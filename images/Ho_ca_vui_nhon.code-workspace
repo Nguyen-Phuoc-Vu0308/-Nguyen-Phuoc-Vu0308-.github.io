@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"path": "../../CodingStuffs"
+		},
+		{
+			"path": "../../CV cá nhân"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "CV cá nhân"
+	}
+}
