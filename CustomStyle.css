@@ -1,0 +1,91 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: #f4f4f4;
+    overflow: hidden;
+    font-size: medium;
+    }
+
+hr {
+    border: none;
+    border: 1px solid skyblue;
+    margin: 10px 0;
+    width: 100%;
+}
+
+p {
+    font-size: 17px;
+    line-height: 1.5;
+    margin-top: 15px;
+}
+
+ul {
+    font-size: 16px;
+    line-height: 1.4;
+    margin: 15px 0px;
+}
+
+li {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.Avatar {
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    }
+
+.Avatar img {
+    border: 3px solid skyblue; 
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    }
+
+.Cv-container {
+    display: grid;
+    grid-template-columns: 28% 42% 30%; 
+    width: 100vw;
+    height: 100vh;
+    background: #a5f4ff;
+    color: rgb(6, 0, 71);
+}
+
+.Sidebar {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    background: #0f0b64;
+    color: rgb(157, 244, 255);
+}
+
+.Main_Experience {
+    padding: 20px;
+    padding-top: 5px;
+}
+
+.Main_Hobby {
+    padding: 5px;
+}
+
+.ChangeMargin_Top {
+    margin-top: 0px;
+}
+
+.ChangeMargin_Bottom {
+    margin-bottom: 5px;
+}
+
+h2.TitleH2 {
+    font-size: 21px;
+    margin-bottom: 0px;
+    text-align: left;
+}
+
+ul.Split {
+    display: flex;
+    justify-content: space-around;
+    padding-right: 50px;
+    padding-left: 0px;
+}
