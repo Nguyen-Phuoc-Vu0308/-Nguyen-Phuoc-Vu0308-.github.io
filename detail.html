@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Thông tin địa điểm</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <button onclick="history.back()" class="back-btn"> Quay lại </button>
+
+    <h1 id="place-title"></h1>
+
+    <img id="place-img" class="detail-img">
+
+    <p id="place-desc" class="detail-desc"></p>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const area = params.get("area");
+        const id = params.get("id");
+
+        const data = {
+            "ha-long": {
+                "ti-top": {
+                    title: "Đảo Ti Tốp",
+                    desc: "",
+                    image: ""
+                },
+                "sung-sot": {
+                    title: "Hang Sửng Sốt",
+                    desc: "",
+                    image: ""
+                },
+                "thien-cung": {
+                    title: "Động Thiên Cung",
+                    desc: "",
+                    image: ""
+                }
+            },
+
+            "phu-quoc": {
+                "hon-thom": {
+                    title: "Hòn Thơm",
+                    desc: "",
+                    image: ""
+                },
+                "vinpearl-safari": {
+                    title: "Vinpearl Safari Phú Quốc",
+                    desc: "",
+                    image: ""
+                },
+                "vinwonders": {
+                    title: "VinWonders Phú Quốc",
+                    desc: "",
+                    image: ""
+                }
+            },
+
+             "nha-trang": {
+                "vinh-nha-trang": {
+                    title: "Vịnh Nha Trang",
+                    desc: "",
+                    image: ""
+                },
+                "vinh-van-phong": {
+                    title: " Vịnh Vân Phong ",
+                    desc: "",
+                    image: ""
+                },
+                "khu-pho-tay": {
+                    title: "Khu Phố Tây",
+                    desc: "",
+                    image: ""
+                }
+            },
+
+             "da-lat": {
+                "thung-lung-tinh-yeu": {
+                    title: "Thung lũng Tình yêu",
+                    desc: "",
+                    image: ""
+                },
+                "fresh-garden": {
+                    title: "Fresh Garden - Làng Hoa Vạn Thành Đà Lạt",
+                    desc: "",
+                    image: ""
+                },
+                "vuon-anh-sang": {
+                    title: "Vườn ánh sáng Lumiere",
+                    desc: "",
+                    image: ""
+                }
+            },
+
+        };
+
+        const place = data[area]?.[id];
+
+        if (place) {
+            document.getElementById("place-title").innerText = place.title;
+            document.getElementById("place-desc").innerText = place.desc;
+            document.getElementById("place-img").src = place.image;
+        } else {
+            document.body.innerHTML = "<h2>Không tìm thấy địa điểm.</h2>";
+        }
+    </script>
+
+</body>
+</html>

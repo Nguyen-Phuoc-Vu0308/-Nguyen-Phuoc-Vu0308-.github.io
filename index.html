@@ -1,18 +1,127 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Website</title>
+    <title>Trang Chính - Địa Điểm Du Lịch Nổi Tiếng</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Nguyễn Phước Vũ  51.01.104.122</h1>
+
+    <h1 class="title">Bắt Đầu Hành Trình Trong Mơ Của Bạn!</h1>
+    <h3 class="subtitle">Hãy cùng nhau tìm hiểu các địa điểm du lịch nổi tiếng</h3>
     
-    <nav>
-        <ul>
-            <li><a href="ho_ca.html">Hồ Cá</a></li>
-            <li><a href="CV.html">CV</a></li>
-        </ul>
-    </nav>
+    <div class="Parent">
+        <!-- Vịnh Hạ Long -->
+        <div class="MainNode" style="margin-left: 200px;" onclick="showBottomPlaces('ha-long')">
+            <h2 class="section-title">Vịnh Hạ Long</h2>
+        </div>
+
+    
+        <div id="bottom-place-container" class="bottom-place-container" style="display:none;">
+            <div class="place-list" id="bottom-place-list">
+
+                <div class="place-card" onclick="goToDetail('ha-long', 'ti-top')">
+                    <h3>Đảo Ti Tốp</h3>
+                    <p>Địa điểm ngắm toàn cảnh tuyệt đẹp</p>
+                </div>
+
+                <div class="place-card" onclick="goToDetail('ha-long', 'sung-sot')">
+                    <h3>Hang Sửng Sốt</h3>
+                    <p>Hang động nổi tiếng với thạch nhũ lung linh</p>
+                </div>
+
+                <div class="place-card" onclick="goToDetail('ha-long', 'thien-cung')">
+                    <h3>Động Thiên Cung</h3>
+                    <p>Không gian tiết diện hình tứ giác</p>
+                </div>
+
+            </div>
+
+        </div>
+        
+        <!-- Phú Quốc -->
+        <div class="MainNode" style="margin-left: 300px;" onclick="showBottomPlaces('phu-quoc')">
+            <h2 class="section-title">Phú Quốc</h2>
+        </div>
+        
+    
+        <div class="bottom-place-list" id="bottom-place-list" style="display:none;">
+
+            <div class="place-card" onclick="goToDetail('phu-quoc', 'hon-thom')">
+                <h3>Hòn Thơm</h3>
+                <p> Có cáp treo vượt biển dài nhất thế giới </p>
+            </div>
+
+            <div class="place-card" onclick="goToDetail('phu-quoc', 'vinpearl-safari')">
+                <h3> Vinpearl Safari Phú Quốc </h3>
+                <p> Vườn thú bán hoang dã đầu tiên của Việt Nam </p>
+            </div>
+
+            <div class="place-card" onclick="goToDetail('phu-quoc', 'vinwonders')">
+                <h3>VinWonders Phú Quốc</h3>
+                <p> Khu vui chơi lớn nhất Châu Á </p>
+            </div>
+
+        </div>
+    
+    </div>
+
+    <div class="Parent_2">
+        <!-- Nha Trang -->
+        <div class="MainNode" style="margin-right: 300px;" onclick="showBottomPlaces('nha-trang')">
+            <h2 class="section-title">Nha Trang</h2>
+        </div>
+        
+        <!-- Đà Lạt -->
+        <div class="MainNode" style="margin-right: 200px;" onclick="showBottomPlaces('da-lat')">
+            <h2 class="section-title">Đà Lạt</h2>
+        </div>
+
+    
+        <div class="bottom-place-list" id="bottom-place-list" style="display:none;">
+
+            <div class="place-card" onclick="goToDetail('da-lat', 'thung-lung-tinh-yeu')">
+                <h3>Thung lũng tình yêu</h3>
+                <p> Một trong những thắng cảnh hàng đầu Đà Lạt </p>
+            </div>
+
+            <div class="place-card" onclick="goToDetail('da-lat', 'fresh-garden')">
+                <h3> Fresh Garden - Làng Hoa Vạn Thành Đà Lạt </h3>
+                <p> “Thiên đường hoa giữa lòng làng hoa”  </p>
+            </div>
+
+            <div class="place-card" onclick="goToDetail('da-lat', 'vuon-anh-sang')">
+                <h3> Vườn Ánh Sáng Lumiere </h3>
+                <p> Không gian "Sống ảo" nổi tiếng Đà Lạt </p>
+            </div>
+
+        </div>
+    
+    </div>
+    
+  
+        <div class="bottom-place-list" id="bottom-place-list" style="display:none;">
+
+            <div class="place-card" onclick="goToDetail('nha-trang', 'vinh-nha-trang')">
+                <h3>Vịnh Nha Trang</h3>
+                <p> Nơi của 19 hòn đảo lớn nhỏ </p>
+            </div>
+
+            <div class="place-card" onclick="goToDetail('nha-trang', 'vinh-van-phong')">
+                <h3> Vịnh Vân Phong </h3>
+                <p> Một trong những vịnh đẹp nhất miền Trung </p>
+            </div>
+
+            <div class="place-card" onclick="goToDetail('nha-trang', 'khu-pho-tay')">
+                <h3> Khu phố Tây </h3>
+                <p> Con phố với nét đặc trưng riêng biệt </p>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+
 </body>
 </html>
