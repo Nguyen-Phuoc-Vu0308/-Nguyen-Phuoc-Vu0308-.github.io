@@ -1,0 +1,413 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Khám phá Phú Quốc</title>
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #eef6fa;
+        color: #00334e;
+    }
+    header {
+        background: url('https://static-images.vnncdn.net/files/publish/2022/10/22/phu-quoc-1057.jpg') center/cover;
+        height: 350px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        font-size: 42px;
+        font-weight: bold;
+        text-shadow: 0 4px 12px rgba(0,0,0,0.7);
+    }
+    nav {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        background: white;
+        padding: 15px 0;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        position: sticky;
+        top: 0;
+        z-index: 50;
+    }
+    nav a {
+        font-size: 18px;
+        text-decoration: none;
+        color: #006699;
+        font-weight: bold;
+        padding: 8px 16px;
+        border-radius: 6px;
+        transition: 0.2s;
+        cursor: pointer;
+    }
+    nav a:hover {
+        background: #e2f2ff;
+    }
+    .page {
+        display: none;
+        padding: 30px 50px;
+        max-width: 1100px;
+        margin: auto;
+    }
+    .active {
+        display: block;
+    }
+    h2 {
+        color: #00557a;
+        font-size: 28px;
+        margin-top: 10px;
+        border-left: 6px solid #0099cc;
+        padding-left: 14px;
+    }
+    .section-block {
+        background: white;
+        margin: 18px 0;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .item-title {
+        font-size: 22px;
+        font-weight: bold;
+        color: #0077aa;
+        margin-bottom: 6px;
+    }
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 20px;
+    }
+    .img-box {
+        width: 100%;
+        border-radius: 10px;
+        height: 180px;
+        object-fit: cover;
+        margin-bottom: 12px;
+    }
+</style>
+</head>
+<body>
+
+<header></header>
+
+<nav>
+    <a onclick="showPage('home')">Trang Chủ</a>
+    <a onclick="showPage('tour')">Tour Du Lịch</a>
+    <a onclick="showPage('place')">Địa Điểm Nổi Bật</a>
+    <a onclick="showPage('food')">Ẩm Thực</a>
+    <a onclick="showPage('experience')">Kinh Nghiệm</a>
+    <a onclick="showPage('contact')">Liên Hệ</a>
+</nav>
+
+<!-- TRANG CHỦ -->
+<div id="home" class="page active">
+    <h2>Giới thiệu Phú Quốc</h2>
+    <div class="section-block">
+    <p>
+        Nằm trong vịnh Thái Lan, thuộc huyện Phú Quốc, tỉnh Kiên Giang, Phú Quốc là hòn đảo du lịch lớn nhất Việt Nam. Nơi đây được mệnh danh là đảo ngọc trên vùng biển phía Tây Nam của Tổ quốc, thu hút rất nhiều du khách cũng như các nhà đầu tư quốc tế. Với nguồn tài nguyên đa dạng và độc đáo, cộng thêm chính sách đầu tư, phát triển đúng hướng, chỉ trong vòng vài năm qua, Phú Quốc đã trỗi dậy mạnh mẽ để trở thành điểm sáng về du lịch trong nước và khu vực.<br>
+    </p>
+    <p>
+        Cách bờ biển Việt Nam 45km. <br>  
+        Cách thành phố Rạch Giá 115km. <br>
+        Cách thị xã Hà Tiên 4km. <br>
+        Cách tỉnh Kampot của Campuchia hơn chỉ 18km. <br>
+    </p>
+    </div>
+</div>
+    <!-- GÓC PHẢI: Nút Đăng nhập / Đăng ký -->
+<style>
+    .auth-buttons {
+        position: fixed;
+        top: 15px;
+        right: 25px;
+        display: flex;
+        gap: 10px;
+        z-index: 9999;
+    }
+    .auth-buttons button {
+        background-color: #0077b6;
+        border: none;
+        padding: 8px 14px;
+        color: white;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 14px;
+    }
+    .auth-buttons button:hover {
+        opacity: 0.85;
+    }
+
+    /* POPUP */
+    .popup-bg {
+        display: none;
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        background: rgba(0,0,0,0.5);
+        justify-content: center;
+        align-items: center;
+        z-index: 10000;
+    }
+    .popup-box {
+        background: white;
+        width: 350px;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.3);
+        animation: fadeIn 0.2s ease;
+    }
+    @keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
+
+    .popup-box input {
+        width: 100%;
+        padding: 10px;
+        margin-top: 8px;
+        margin-bottom: 14px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+    }
+
+    .popup-box button {
+        width: 100%;
+        padding: 10px;
+        background: #0077b6;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+    }
+</style>
+
+<!-- NÚT -->
+<div class="auth-buttons">
+    <button onclick="openPopup('login')">Đăng nhập</button>
+    <button onclick="openPopup('register')">Đăng ký</button>
+</div>
+
+<!-- POPUP -->
+<div id="popup" class="popup-bg">
+    <div class="popup-box">
+        <h3 id="popup-title">Đăng nhập</h3>
+
+        <input type="email" id="email" placeholder="Email">
+
+        <!-- Trường chỉ hiện khi Đăng ký -->
+        <input type="text" id="username" placeholder="Tên đăng nhập" style="display:none;">
+        <input type="tel" id="phone" placeholder="Số điện thoại" style="display:none;">
+
+        <input type="password" id="password" placeholder="Mật khẩu">
+        <input type="password" id="password2" placeholder="Xác nhận mật khẩu" style="display:none;">
+
+        <button onclick="submitForm()">Xác nhận</button>
+        <p style="color:red; margin-top:10px;" id="error-msg"></p>
+    </div>
+</div>
+
+<script>
+    let mode = "login";
+
+    function openPopup(type) {
+        mode = type;
+        document.getElementById("popup-title").innerText =
+            type === "login" ? "Đăng nhập" : "Đăng ký tài khoản";
+
+        // Reset input
+        ["email","username","phone","password","password2"].forEach(id => {
+            document.getElementById(id).value = "";
+        });
+
+        // Reset lỗi
+        document.getElementById("error-msg").innerText = "";
+
+        // Ẩn/hiện các trường
+        const show = type === "register" ? "block" : "none";
+        document.getElementById("username").style.display = show;
+        document.getElementById("phone").style.display = show;
+        document.getElementById("password2").style.display = show;
+
+        // Mở popup
+        document.getElementById("popup").style.display = "flex";
+    }
+
+    // Click ra ngoài để đóng
+    window.onclick = function(e) {
+        if (e.target.id === "popup") {
+            document.getElementById("popup").style.display = "none";
+        }
+    }
+
+    function submitForm() {
+        const email = document.getElementById("email").value.trim();
+        const username = document.getElementById("username").value.trim();
+        const phone = document.getElementById("phone").value.trim();
+        const password = document.getElementById("password").value.trim();
+        const password2 = document.getElementById("password2").value.trim();
+
+        const error = document.getElementById("error-msg");
+
+        const emailRegex = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/;
+        const phoneRegex = /^[0-9]{9,11}$/;
+
+        if (!email || !password || (mode==="register" && (!username || !phone || !password2))) {
+            error.innerText = "Vui lòng nhập đầy đủ thông tin.";
+            return;
+        }
+
+        if (!emailRegex.test(email)) {
+            error.innerText = "Email không hợp lệ.";
+            return;
+        }
+
+        if (mode === "register" && !phoneRegex.test(phone)) {
+            error.innerText = "Số điện thoại không hợp lệ.";
+            return;
+        }
+
+        if (password.length < 6) {
+            error.innerText = "Mật khẩu phải có ít nhất 6 ký tự.";
+            return;
+        }
+
+        if (mode === "register" && password !== password2) {
+            error.innerText = "Mật khẩu xác nhận không khớp.";
+            return;
+        }
+
+        alert(mode === "login" ? "Đăng nhập thành công!" : "Đăng ký thành công!");
+        document.getElementById("popup").style.display = "none";
+    }
+</script>
+
+
+<!-- TOUR -->
+<div id="tour" class="page">
+    <h2>Tour Du Lịch Phú Quốc</h2>
+
+    <div class="grid">
+        <div class="section-block">
+            <img src="https://www.vietfuntravel.com.vn/image/cache/data/2024/VF30/tour-phu-quoc-75-cr-466x310.png" class="img-box">
+            <div class="item-title">VF30 - Tour 3 ngày - Khởi hành từ Sài Gòn</div>
+            <p>- Giá: Từ 2 730 000 đ<br></p>
+            - Lịch trình: Sài Gòn - Phú Quốc - Cơ Sở Nuôi Cấy Ngọc Trai - Dinh Bà & Dinh Cậu - Nhà Thùng Nước Mắm - Vườn Tiêu - Suối Tranh - Cơ Sở Ủ Rượu Vang Sim - Grand World - Nhà Tù Phú Quốc - Câu Cá & Lặn Ngắm San Hô - Thiền Viện Trúc Lâm Hộ Quốc - Cầu Hôn - Sài Gòn
+        </div>
+
+        <div class="section-block">
+            <img src="https://www.vietfuntravel.com.vn/image/cache/data/sua-hinh-thum/dinh-cau-temple-1-cr-466x310.jpg" class="img-box">
+            <div class="item-title">VF 170 - Tour 8 ngày 7 đêm - Khởi hành từ Hà Nội</div>
+            <p>- Giá: Từ 8 930 000 đ<br></p>
+            - Lịch trình: Hà Nội - Sài Gòn - Mũi Né - Miền Tây - Phú Quốc - Hà Nội
+        </div>
+
+        <div class="section-block">
+            <img src="https://www.vietfuntravel.com.vn/image/cache/data/Tour/VF2283/vf2283-bai-sap-cr-466x310.jpg" class="img-box">
+            <div class="item-title">VF 2283 - Tour 3 ngày 2 đêm - Khởi hành từ Cần Thơ</div>
+            <p>- Giá: Từ 2 620 000 đ<br></p>
+            - Địa điểm: Cần Thơ - Phú Quốc - Vườn Tiêu - Cơ Sở Ủ Rượu Vang Sim - Suối Tranh - Làng Chài Cổ Hàm Ninh - Dinh Cậu - Dinh Bà Thủy Long Thánh Mẫu - Cơ Sở Nước Mắm - Cơ Sở Nuôi Cấy Ngọc Trai - Thiền Viện Trúc Lâm Hộ Quốc - Nhà Tù Phú Quốc - Bãi Sao - Cần Thơ
+        </div>
+    </div>
+</div>
+
+<!-- ĐỊA ĐIỂM DU LỊCH -->
+<div id="place" class="page">
+    <h2>Địa Điểm Du Lịch Nổi Bật</h2>
+
+    <div class="grid">
+        <div class="section-block">
+            <img class="img-box" src="https://res.klook.com/image/upload/fl_lossy.progressive,q_85/c_fill,w_1000/v1761389301/fm5ehalfjm7fcld4w1zz.webp" />
+            <div class="item-title">1. VinWonders Phú Quốc - Địa Điểm Du Lịch Phú Quốc HOT Cho Cả Gia Đình</div>
+            Công viên chủ đề lớn nhất Việt Nam, nơi sở hữu vô số trò chơi và trải nghiệm giải trí cảm giác mạnh, kích thích adrenaline. Từ những đường trượt nước siêu dốc, dài 120m đến vòng đu quay khổng lồ Giant Boomerang, công viên này đáp ứng mọi nhu cầu vui chơi. Ngoài ra, du khách có thể thư giãn tại dòng sông lười hoặc thưởng thức màn trình diễn đậm chất cổ tích.
+        </div>
+
+        <div class="section-block">
+            <img class="img-box" src="https://ik.imagekit.io/tvlk/blog/2022/02/dia-diem-du-lich-phu-quoc-3.jpg?tr=q-70,c-at_max,w-1000,h-600" />
+            <div class="item-title">Grand World Phú Quốc</div>
+            Grand World Phú Quốc nằm trong khu tổ hợp giải trí và nghỉ dưỡng Phú Quốc United Center - quần thể nghỉ dưỡng đẳng cấp hàng đầu tại Việt Nam. Đến đây, bạn sẽ có cơ hội khám phá và trải nghiệm nhiều nét đẹp truyền thống của Việt Nam cũng như văn hoá của nhiều quốc gia trên thế giới thông qua các show diễn ở điểm đến này.
+        </div>
+
+        <div class="section-block">
+            <img class="img-box" src="https://ik.imagekit.io/tvlk/blog/2024/05/cau-hon-phu-quoc-1024x682.jpg?tr=q-70,c-at_max,w-1000,h-600" />
+            <div class="item-title">Cầu Hôn Phú Quốc (Kiss Bridge) </div>
+            Lấy cảm hứng từ câu chuyện tình Ngưu Lang - Chức Nữ và bức tranh "The Creation of Adam" của Michelangelo, Cầu Hôn Phú Quốc biểu trưng cho tình yêu vĩnh cửu và sự gắn kết. Đặc biệt, vào khoảng thời gian từ ngày 24/12 đến 01/01 hàng năm, ánh hoàng hôn chiếu qua khoảng trống giữa hai nhánh cầu, tạo nên khung cảnh lãng mạn và ấn tượng.
+        </div>
+    </div>
+</div>
+
+<!-- ẨM THỰC -->
+<div id="food" class="page">
+    <h2>Những món ăn hấp dẫn tại Phú Quốc không thể bỏ lỡ</h2>
+
+    <div class="grid">
+        <div class="section-block">
+            <img class="img-box" src="https://vinpearlresortvietnam.com/wp-content/uploads/goi-ca-trich-phu-quoc-1.jpg" />
+            <div class="item-title">Gỏi cá trích - Món ăn quốc dân</div>
+            <p>Gỏi cá trích là món ăn nổi tiếng nhất khi nhắc tới ẩm thực Phú Quốc. Cá trích tươi được làm sạch, trộn cùng hành tây, dừa bào, rau rừng rồi ăn kèm nước mắm đậm đà. Món này vừa ngọt, vừa béo, vừa thanh mát, món ăn vẫn giữ trọn vị ngọt tự nhiên của cá mà không hề tanh. Hãy ăn kèm bánh tráng, rau rừng đặc trưng của đảo, cuốn lại và chấm nước mắm đậu phộng. <br></p>
+            -Quán ăn đề cử: Nhà hàng Ra Khơi, Xin Chào, Quán Việt.<br>
+            -Mức giá tham khảo: 120.000 - 180.000 đ/dĩa.
+        </div>
+
+        <div class="section-block">
+            <img class="img-box" src="https://vinpearlresortvietnam.com/wp-content/uploads/tiet-canh-cua-phu-quoc.jpg" />
+            <div class="item-title">Tiết canh cua - Món ăn độc lạ cho người đam mê trải nghiệm cái mới </div>
+            <p>Tiết canh cua là đặc sản lạ chỉ riêng Phú Quốc có. Không phải từ động vật có máu nóng như tiết canh truyền thống, tiết canh cua làm từ gạch cua trộn chanh và gia vị. <br></p>
+            -Lưu ý: Món ăn này có thể sẽ không hợp khẩu vị của một số người nên bạn hãy cân nhắc nếu muốn thử nghiệm nhé. <br>
+            -Quán ăn đề cử: Nhà hàng Thế Giới Biển, Nhà hàng Trúc Lâm, Quán Hòn Nón. <br>
+            -Mức giá: Khoảng 50.000 - 80.000 đ.
+        </div>
+
+        <div class="section-block">
+            <img class="img-box" src="https://vinpearlresortvietnam.com/wp-content/uploads/mon-ghe-hap-phu-quoc.jpg" />
+            <div class="item-title">Ghẹ Hàm Ninh - Biểu tượng hải sản Phú Quốc</div>
+            <p>Ghẹ Hàm Ninh có kích thước nhỏ nhưng thịt cực chắc, ngọt và thơm. Chỉ cần hấp đơn giản đã thể hiện được sự tinh tế của ẩm thực Phú Quốc.<br></p>
+            -Quán ăn đề cử: Làng chài Hàm Ninh, Nhà hàng Biển Xanh.<br>
+            -Mức giá: 350.000 - 500.000 đ/kg  
+        </div>
+    </div>
+</div>
+
+<!-- KINH NGHIỆM -->
+<div id="experience" class="page">
+    <h2>Kinh Nghiệm Du Lịch</h2>
+
+    <div class="section-block">
+        <div class="item-title">Di chuyển</div>
+        <p>Vietnam Airlines, Bamboo Airways và Vietjet Air cung cấp các chuyến bay thẳng đến Phú Quốc từ Hà Nội, Hải Phòng, Thanh Hóa, Vinh, Huế, Đà Nẵng, Nha Trang, Đà Lạt, Buôn Ma Thuột... Giá vé máy bay nếu may mắn bạn có thể săn được vé rẻ trên dưới một triệu đồng cho cả chiều đi lẫn về.<br></p>
+        <p>Ngoài các chuyến bay thẳng, du khách có nhiều lựa chọn thú vị hơn khi đi từ TP HCM đến Phú Quốc như xe máy, ôtô, xe khách, tàu cao tốc hoặc phà.<br></p>
+        Những khách lần đầu đi Phú Quốc thì nên đi tàu cao tốc để tránh bị say sóng. Có hai tuyến đi Phú Quốc, hành trình từ Rạch Giá là khoảng 120 km mất 2 tiếng 30 phút, còn hành trình từ Hà Tiên là khoảng 50 km mất 1 tiếng 30 phút. Bạn nên xuất phát từ Hà Tiên để rút ngắn thời gian di chuyển trên biển, và giá vé cũng rẻ hơn. Hãy gọi trước cho bến để mua vé, đảm bảo lịch trình theo đúng kế hoạch.
+    </div>
+
+    <div class="section-block">
+        <div class="item-title">Đặt Khách Sạn</div>
+        <p>Du khách có thể tìm thấy trên Phú Quốc những nhà nghỉ bình dân cho đến khu nghỉ dưỡng cao cấp mang đẳng cấp quốc tế. Nếu muốn tiết kiệm chi phí, bạn có thể ở homestay. Nếu đi cùng công ty, gia đình có trẻ nhỏ thì lựa chọn tốt nhất cho bạn là khách sạn ở thị trấn Dương Đông, tiện tới các điểm tham quan và mua sắm.<br> </p>
+        Một số khách sạn 5 sao như Saigon Phu Quoc Resort, Eden Resort thường có giá trên 1.500.000 đồng một phòng mỗi ngày. Các khách sạn 3-4 sao giá từ 1.000.000 đến 1.500.000 đồng. Khách sạn 2 sao như Gold Hotel, Lavita Hotel, Sea Star resort, Kim Hoa thường có giá 600.000 - 800.000 đồng.
+    </div>
+
+    <div class="section-block">
+        <div class="item-title">Thời Gian Du Lịch Lý Tưởng</div>
+        <p>Thời điểm lý tưởng nhất để du lịch Đảo Ngọc là từ khoảng tháng 11 đến tháng 4 năm sau. Đây là mùa khô ở phương Nam, trời ít mưa, biển lặng, sóng êm và nắng ấm thích hợp cho các hoạt động du lịch ngoài trời. Mùa này thích hợp cho những tour du lịch nghỉ dưỡng, không thích hợp cho khách đi bụi hoặc đi phượt. <br></p>
+        Từ khoảng tháng 5 đến tháng 10 là mùa mưa, đôi khi có bão nhưng Phú Quốc vẫn đông khách do rơi vào khoảng thời gian nghỉ hè. Nếu đi Phú Quốc mùa này, bạn nên đến vào khoảng cuối tháng 4, lúc này khách vẫn chưa đông và thời tiết còn đẹp, giá cả cũng không tăng quá cao như mùa cao điểm. Tháng 10 cũng là thời điểm giao mùa nên ít mưa.   
+    </div>
+</div>
+
+<!-- LIÊN HỆ -->
+<div id="contact" class="page">
+    <h2>Liên Hệ</h2>
+    <div class="section-block">
+        Hotline: 123456789<br>
+        Email: info@phuquoctravel.com<br>
+        Mọi câu hỏi và thắc mắc xin vui lòng liên hệ qua số hotline hoặc email trên. Chúng tôi luôn sẵn sàng hỗ trợ bạn 24/7.
+    </div>
+</div>
+
+<script>
+function showPage(pageId) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById(pageId).classList.add('active');
+}
+</script>
+
+</body>
+</html>
